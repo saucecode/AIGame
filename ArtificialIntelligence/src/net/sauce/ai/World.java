@@ -17,7 +17,7 @@ public class World {
 	List<Block> walls = new ArrayList<Block>();
 	List<Bullet> bullets = new ArrayList<Bullet>();
 	static Random rand = new Random();
-	
+
 	public World(Game g) {
 		game = g;
 		addBlocks();
@@ -28,18 +28,18 @@ public class World {
 		for(Block b: walls){
 			b.doTick();
 		}
-		
+
 		player.doTick();
 		for(Bot bot: bots)
 			bot.doTick();
-		
+
 		for(Bullet b: bullets){
 			b.doTick();
 		}
-		
+
 		checkHealth();
 	}
-	
+
 	public void draw(Graphics2D g){
 		for(Block b: walls){
 			b.doDraw(g);
@@ -51,7 +51,7 @@ public class World {
 			b.doDraw(g);
 		}
 	}
-	
+
 	public void checkHealth(){
 		if(player.getHealth() <= 0){
 			if(JOptionPane.showConfirmDialog(null, "Game Over! You loose! Would You like to play again?") == JOptionPane.YES_OPTION){
@@ -62,19 +62,14 @@ public class World {
 				System.exit(0);
 			}
 		}
-		boolean allDead = true;
+		List<Boolean> bool = new ArrayList<Boolean>();
 		for(Bot bot: bots){
 			if(bot.getHealth() <= 0){
-				if(JOptionPane.showConfirmDialog(null, "Game Over! You Win!! Would You like to play again?") == JOptionPane.YES_OPTION){
-					bot.setActive(false);
-				}else{
-					System.exit(0);
-				}
+				bot.setActive(false);
 			}
-			if(bot.isActive())
-				allDead = false;
+			bool.add(bot.isActive());
 		}
-		if(allDead){
+		if(!bool.contains(true)){
 			if(JOptionPane.showConfirmDialog(null, "Game Over! You Win!! Would You like to play again?") == JOptionPane.YES_OPTION){
 				Game.main(null);
 				game.timer.stop();
@@ -88,11 +83,11 @@ public class World {
 	public void keyPressed(int keyCode) {
 		keys[keyCode] = true;
 	}
-	
+
 	public void keyReleased(int keyCode) {
 		keys[keyCode] = false;
 	}
-	
+
 	public void addBlocks(){
 		walls.add(new Block(this, new Vector(16,16)));
 		walls.add(new Block(this, new Vector(48,16)));
@@ -229,10 +224,10 @@ public class World {
 		walls.add(new Block(this, new Vector(496,528)));
 		walls.add(new Block(this, new Vector(464,528)));
 	}
-	
+
 	public void addBots(){
 		bots.add(new Bot(this, new Vector(128,128)));
 		bots.add(new Bot(this, new Vector(128,128)));
-		bots.add(new Bot(this, new Vector(128,128)));
+		//		bots.add(new Bot(this, new Vector(128,128)));
 	}
 }
