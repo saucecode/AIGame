@@ -50,7 +50,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, MouseMo
 	public void paint(Graphics gg){
 		super.paint(gg);
 		Graphics2D g = (Graphics2D)gg;
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		world.draw(g);
 	}

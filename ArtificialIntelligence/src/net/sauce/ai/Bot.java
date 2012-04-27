@@ -59,10 +59,12 @@ public class Bot extends Entity {
 	}
 
 	public void onDraw(Graphics2D g) {
-		g.setColor(Color.WHITE);
+		g.setColor(Color.white);
+		g.fillRect(getVector().getIntX()-12, getVector().getIntY()-12, 24, 24);
+		g.setColor(Color.red);
 		g.drawRect(getVector().getIntX()-12, getVector().getIntY()-12, 24, 24);
 		g.drawString("Can See Player: "+canSee(), 16, 38);
-		g.setColor(Color.GREEN);
+		g.setColor(Color.black);
 		g.drawString(""+getHealth(), getVector().getIntX()-10, getVector().getIntY()+6);
 	}
 

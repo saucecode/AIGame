@@ -1,10 +1,14 @@
 package net.sauce.ai;
 
 import java.awt.Graphics2D;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class World {
@@ -16,10 +20,17 @@ public class World {
 	List<Bot> bots = new ArrayList<Bot>();
 	List<Block> walls = new ArrayList<Block>();
 	List<Bullet> bullets = new ArrayList<Bullet>();
+	ImageIcon floor, wall;
 	static Random rand = new Random();
 
 	public World(Game g) {
 		game = g;
+		try {
+			floor = new ImageIcon(ImageIO.read(new File("img/floor.jpg")));
+			wall = new ImageIcon(ImageIO.read(new File("img/wall_block.png")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		addBlocks();
 		addBots();
 	}
@@ -41,6 +52,11 @@ public class World {
 	}
 
 	public void draw(Graphics2D g){
+		for(int x=0;x<800;x+=128){
+			for(int y=0;y<600;y+=128){
+				g.drawImage(floor.getImage(), x, y, null);
+			}
+		}
 		for(Block b: walls){
 			b.doDraw(g);
 		}

@@ -27,8 +27,11 @@ public class Player extends Entity {
 	}
 
 	public void onDraw(Graphics2D g) {
+		g.setColor(Color.white);
+		g.fillRect(getVector().getIntX()-12, getVector().getIntY()-12, 24, 24);
 		g.setColor(Color.green);
 		g.drawRect(getVector().getIntX()-12, getVector().getIntY()-12, 24, 24);
+		g.setColor(Color.black);
 		g.drawString(""+getHealth(), getVector().getIntX()-10, getVector().getIntY()+6);
 	}
 

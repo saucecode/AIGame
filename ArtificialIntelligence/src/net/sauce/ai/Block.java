@@ -1,6 +1,5 @@
 package net.sauce.ai;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
@@ -20,10 +19,7 @@ public class Block extends Entity {
 	}
 
 	public void onDraw(Graphics2D g) {
-		g.setColor(Color.black);
-		g.fillRect(getVector().getIntX()-15, getVector().getIntY()-15, 31, 31);
-		g.setColor(Color.red);
-		g.drawRect(getVector().getIntX()-16, getVector().getIntY()-16, 32, 32);
+		g.drawImage(getWorld().wall.getImage(), getVector().getIntX()-16, getVector().getIntY()-16, null);
 	}
 	
 	public Vector getNorthWest(){
